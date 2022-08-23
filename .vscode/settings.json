@@ -1,0 +1,49 @@
+{
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.formatOnSave": true
+    },
+    "[css]": {
+        "editor.defaultFormatter": "stylelint.vscode-stylelint",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.stylelint": true
+        }
+    },
+    "tailwindCSS.emmetCompletions": true,
+    "stylelint.enable": true,
+    "css.validate": false,
+    "eslint.format.enable": true,
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "editor.tabSize": 4,
+    "eslint.nodeEnv": "NODE_ENV=development",
+    "cSpell.words": [
+        "endinject",
+        "endremove",
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "todohighlight.keywords": [
+        "SECTION:",
+        "NOTE:",
+        "XXX:",
+        "BUG:",
+    ],
+    "todohighlight.defaultStyle": {
+        "color": "#212121",
+        "backgroundColor": "#30A070",
+        "overviewRulerColor": "#30A070",
+        "cursor": "pointer",
+    },
+}

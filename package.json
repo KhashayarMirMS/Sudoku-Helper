@@ -1,0 +1,45 @@
+{
+  "name": "sudoku-helper",
+  "version": "0.1.0",
+  "description": "A web-app to help people with solving sudoku puzzles and draft their ideas",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf dist/ 2> /dev/null && mkdir dist/",
+    "dev:html": "postbuild -i src/html/index.html -o dist/index.html --css dist/static/css --js dist/static/js --ignore dist/",
+    "build:html": "npm run dev:html -- --remove production",
+    "build:ts": "tsc",
+    "dev:ts": "npm run build:ts -- --sourceMap",
+    "dev:sass": "sass src/sass/:dist/static/css/",
+    "build:sass": "npm run dev:sass -- --no-source-map",
+    "build": "NODE_ENV=production run-s clean build:sass build:ts build:html",
+    "dev:watch": "node watch.js",
+    "dev:serve": "reload --browser --dir dist/",
+    "dev": "run-s clean dev:sass dev:ts dev:html && run-p dev:watch dev:serve",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KhashayarMirMS/Sudoku-Helper.git"
+  },
+  "keywords": [
+    "sudoku"
+  ],
+  "author": "Khashayar Mirsadeghi <mms.khashayar@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KhashayarMirMS/Sudoku-Helper/issues"
+  },
+  "homepage": "https://github.com/KhashayarMirMS/Sudoku-Helper#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "chokidar": "^3.5.3",
+    "eslint": "^8.22.0",
+    "npm-run-all": "^4.1.5",
+    "postbuild": "^2.1.0",
+    "reload": "^3.2.0",
+    "sass": "^1.54.5",
+    "typescript": "^4.7.4"
+  }
+}
