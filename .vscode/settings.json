@@ -32,6 +32,8 @@
     "cSpell.words": [
         "endinject",
         "endremove",
+        "esbuild",
+        "outfile"
     ],
     "typescript.tsdk": "node_modules/typescript/lib",
     "todohighlight.keywords": [
