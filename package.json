@@ -12,10 +12,12 @@
     "dev:ts": "npm run build:ts -- --sourcemap",
     "dev:sass": "sass src/sass/:dist/static/css/",
     "build:sass": "npm run dev:sass -- --no-source-map",
-    "build": "NODE_ENV=production run-s clean build:sass build:ts build:html",
+    "build:static": "cp -r src/static dist/",
+    "dev:static": "npm run build:static",
+    "build": "NODE_ENV=production run-s clean build:static build:sass build:ts build:html",
     "dev:watch": "node watch.js",
     "dev:serve": "reload --browser --dir dist/",
-    "dev": "run-s clean dev:sass dev:ts dev:html && run-p dev:watch dev:serve",
+    "dev": "run-s clean dev:static dev:sass dev:ts dev:html && run-p dev:watch dev:serve",
     "start": "npm run dev"
   },
   "repository": {

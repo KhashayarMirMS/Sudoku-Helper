@@ -2,9 +2,10 @@ import { watch } from 'chokidar';
 import { exec } from 'child_process';
 
 const supportedFormats = {
-    html: 'html',
-    sass: ['sass', 'scss'],
-    ts: 'ts'
+    html: /.+\.html/,
+    sass: [/.+\.sass/, /.+\.scss/],
+    ts: /.+\.ts/,
+    static: /static\/.+/
 };
 
 /**
@@ -23,8 +24,8 @@ function getChangeType(path) {
             extensions = [mappings];
         }
 
-        for (const extension of extensions) {
-            if (path.endsWith(extension)) {
+        for (const extensionRegex of extensions) {
+            if (path.match(extensionRegex)) {
                 return type;
             }
         }

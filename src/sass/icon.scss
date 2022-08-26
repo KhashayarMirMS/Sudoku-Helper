@@ -1,0 +1,66 @@
+/*
+* https://remixicon.com
+* https://github.com/Remix-Design/RemixIcon
+* Copyright RemixIcon.com
+* Released under the Apache License Version 2.0
+*/
+
+@font-face {
+    font-family: icon;
+    src: url('/static/fonts/remixicon.eot?t=1661506872643'); /* IE9*/
+    src: url('/static/fonts/remixicon.eot?t=1661506872643#iefix') format('embedded-opentype') /* IE6-IE8 */,
+        url('/static/fonts/remixicon.woff2?t=1661506872643') format('woff2'),
+        url('/static/fonts/remixicon.woff?t=1661506872643') format('woff'),
+        url('/static/fonts/remixicon.ttf?t=1661506872643') format('truetype')
+            /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/,
+        url('/static/fonts/remixicon.svg?t=1661506872643#remixicon') format('svg') /* iOS 4.1- */;
+    font-display: swap;
+}
+
+i.icon {
+    font-family: icon !important;
+    font-style: normal;
+    font-weight: normal;
+    color: inherit;
+    font-size: inherit;
+
+    &.lightbulb {
+        &::before {
+            content: '\eea9';
+        }
+
+        &.filled::before {
+            content: '\eea6';
+        }
+    }
+
+    &.flask {
+        &::before {
+            content: '\ed3f';
+        }
+
+        &.filled::before {
+            content: '\ed3e';
+        }
+    }
+
+    &.eraser {
+        &::before {
+            content: '\ec9f';
+        }
+
+        &.filled::before {
+            content: '\ec9e';
+        }
+    }
+
+    &.pencil {
+        &::before {
+            content: '\efe0';
+        }
+
+        &.filled::before {
+            content: '\efdf';
+        }
+    }
+}
