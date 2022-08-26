@@ -6,25 +6,81 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku Helper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- inject:css -->
     <!-- endinject -->
 </head>
 
 <body>
-    <div class="page" data-initial data-title="selection">
-        <button id="new-puzzle-button">New Puzzle</button>
-        <button id="scan-puzzle-button">Scan A Puzzle</button>
+    <div class="page" data-title="selection" data-initial>
+        <div class="stack full-size gap-8">
+            <p class="medium text">What do you want to do?</p>
+            <div class="stack">
+                <button id="new-puzzle-button">New Puzzle</button>
+                <button id="scan-puzzle-button">Scan A Puzzle</button>
+            </div>
+        </div>
     </div>
     <div class="page" data-title="new-puzzle">
-        <button class="difficulty-selection-button" data-difficulty="easy">Easy</button>
-        <button class="difficulty-selection-button" data-difficulty="medium" m">Medium</button>
-        <button class="difficulty-selection-button" data-difficulty="hard">Hard</button>
+        <div class="stack full-size gap-8">
+            <p class="medium text">Choose a difficulty</p>
+            <div class="stack">
+                <button class="difficulty-selection-button" data-difficulty="easy">Easy</button>
+                <button class="difficulty-selection-button" data-difficulty="medium" m">Medium</button>
+                <button class="difficulty-selection-button" data-difficulty="hard">Hard</button>
+            </div>
+        </div>
     </div>
     <div class="page" data-title="scan">
         not implemented
     </div>
-    <div class="page" data-title="main">
-        game
+    <div class="page" data-title="game">
+        <div class="game full-size">
+            <p id="info" class="medium text"></p>
+            <div id="table"></div>
+            <div class="button-panel">
+                <button class="outlined menu">Menu</button>
+                <button class="large set-value square" data-value="1">1</button>
+                <button class="large set-value square" data-value="2">2</button>
+                <button class="large set-value square" data-value="3">3</button>
+                <button class="large set-value square" data-value="4">4</button>
+                <button class="large set-value square" data-value="5">5</button>
+                <button class="large set-value square" data-value="6">6</button>
+                <button class="large set-value square" data-value="7">7</button>
+                <button class="large set-value square" data-value="8">8</button>
+                <button class="large set-value square" data-value="9">9</button>
+                <button class="large square erase">
+                    <i class="icon eraser"></i>
+                </button>
+                <button class="dark-gray large toggle square notes">
+                    <i class="icon pencil"></i>
+                </button>
+                <button class="yellow large square hint">
+                    <i class="icon lightbulb"></i>
+                </button>
+                <button class="purple large toggle square experiment">
+                    <i class="icon flask"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="templates">
+        <div class="template" data-name="cell">
+            <div class="cell square" data-row="{{ row }}" data-column="{{ column }}">
+                <p class="small text note hidden" data-value="1">1</p>
+                <p class="small text note hidden" data-value="2">2</p>
+                <p class="small text note hidden" data-value="3">3</p>
+                <p class="small text note hidden" data-value="4">4</p>
+                <p class="small text note hidden" data-value="5">5</p>
+                <p class="small text note hidden" data-value="6">6</p>
+                <p class="small text note hidden" data-value="7">7</p>
+                <p class="small text note hidden" data-value="8">8</p>
+                <p class="small text note hidden" data-value="9">9</p>
+                <p class="text value"></p>
+            </div>
+        </div>
     </div>
     <!-- inject:js -->
     <!-- endinject -->

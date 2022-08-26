@@ -33,7 +33,11 @@
         "endinject",
         "endremove",
         "esbuild",
-        "outfile"
+        "outfile",
+        "remixicon",
+        "Renderable",
+        "Syncable",
+        "truetype"
     ],
     "typescript.tsdk": "node_modules/typescript/lib",
     "todohighlight.keywords": [
