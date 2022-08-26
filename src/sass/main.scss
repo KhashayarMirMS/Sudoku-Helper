@@ -1,5 +1,6 @@
 @use 'colors';
 @use 'sass:color';
+@use 'sass:math';
 @use 'spacing';
 @use 'responsive';
 
@@ -344,7 +345,7 @@ p {
 
             @for $value from 1 through 9 {
                 &[data-value='#{$value}'] {
-                    $row: ceil($value / 3);
+                    $row: math.ceil(math.div($value, 3));
                     $column: $value % 3;
                     @if $column == 0 {
                         $column: 3;
