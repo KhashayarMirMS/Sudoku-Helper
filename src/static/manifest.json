@@ -1,7 +1,7 @@
 {
     "name": "Sudoku Helper",
     "short_name": "Sudoku",
-    "start_url": "",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#30a8ee",
