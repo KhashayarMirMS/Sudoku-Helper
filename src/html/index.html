@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="page" data-title="selection" data-initial>
+    <div class="page" data-title="selection">
         <div class="stack full-size gap-8">
             <p class="medium text">What do you want to do?</p>
             <div class="stack">
@@ -33,8 +33,14 @@
             </div>
         </div>
     </div>
-    <div class="page" data-title="scan">
-        not implemented
+    <div class="page" data-title="scan" data-initial>
+        <div class="scan-page-layout">
+            <button id="start-scan">START</button>
+            <div class="camera-feed">
+                <canvas id="output"></canvas>
+                <video id="camera-video" muted playsinline />
+            </div>
+        </div>
     </div>
     <div class="page" data-title="game">
         <div class="game full-size">
@@ -82,10 +88,11 @@
             </div>
         </div>
     </div>
+    <script src="https://docs.opencv.org/4.5.0/opencv.js"></script>
     <!-- inject:js -->
     <!-- endinject -->
     <!-- remove:production -->
-    <script src="/reload/reload.js"></script>
+    <!-- <script src="/reload/reload.js"></script> -->
     <!-- endremove -->
 </body>
 
