@@ -1,3 +1,4 @@
+@use 'layout';
 @use 'colors';
 @use 'sass:color';
 @use 'sass:math';
@@ -13,11 +14,19 @@
     box-sizing: border-box;
 }
 
+html {
+    @include spacing.full-height;
+}
+
 html,
 body {
     padding: 0;
     margin: 0;
-    @include spacing.full-size;
+}
+
+body {
+    min-height: 100%;
+    @include layout.grid($gap: 0, $align-content: stretch, $justify-content: stretch);
 }
 
 button {
@@ -94,7 +103,12 @@ p {
 
 .text {
     --font-size: 36px;
-    --correction: 14px;
+    --correction: 10.5px;
+
+    @include responsive.mobile-screen {
+        --font-size: 26px;
+        --correction: 7.4px;
+    }
 
     font-size: var(--font-size);
     line-height: calc(var(--font-size) + var(--correction));
@@ -113,21 +127,21 @@ p {
 
     &.small {
         --font-size: 18px;
-        --correction: 7px;
+        --correction: 5.5px;
 
         @include responsive.mobile-screen {
             --font-size: 13px;
-            --correction: 4.6px;
+            --correction: 3.5px;
         }
     }
 
     &.medium {
         --font-size: 27px;
-        --correction: 10.5px;
+        --correction: 8.8px;
 
         @include responsive.mobile-screen {
             --font-size: 20px;
-            --correction: 7.9px;
+            --correction: 5.5px;
         }
     }
 }
@@ -152,53 +166,13 @@ p {
     display: none;
 }
 
-@mixin grid-gap($gap) {
-    gap: spacing.multiply($gap);
-}
-
-@mixin grid-alignment($property, $value) {
-    #{$property}: $value;
-}
-
-@mixin grid($align-content: center, $justify-content: center, $align-items: stretch, $justify-items: stretch, $gap: 4) {
-    display: grid;
-    @include grid-gap($gap);
-
-    @include grid-alignment(align-content, $align-content);
-    @include grid-alignment(justify-content, $justify-content);
-    @include grid-alignment(align-items, $align-items);
-    @include grid-alignment(justify-items, $justify-items);
-
-    $content-alignment-options: (start, center, end, stretch, space-around, space-between, space-evenly);
-    @each $alignment in $content-alignment-options {
-        &.align-content-#{$alignment} {
-            align-content: $alignment;
-        }
-
-        &.justify-content-#{$alignment} {
-            justify-content: $alignment;
-        }
-    }
-
-    $item-alignment-options: (start, center, end, stretch);
-    @each $alignment in $item-alignment-options {
-        &.align-items-#{$alignment} {
-            align-items: $alignment;
-        }
-
-        &.justify-items-#{$alignment} {
-            justify-items: $alignment;
-        }
-    }
-}
-
 .grid,
 .stack,
 .row {
-    @include grid;
+    @include layout.grid;
     @for $space from 0 through 10 {
         &.gap-#{$space} {
-            @include grid-gap($space);
+            @include layout.grid-gap($space);
         }
     }
 }
@@ -210,11 +184,11 @@ p {
     @each $direction in $alignment-directions {
         @each $alignment in $content-alignment-options {
             &.#{direction}-content-#{alignment} {
-                @include grid-alignment(#{$direction}-content, $alignment);
+                @include layout.grid-alignment(#{$direction}-content, $alignment);
             }
 
             &.#{direction}-items-#{alignment} {
-                @include grid-alignment(#{$direction}-items, $alignment);
+                @include layout.grid-alignment(#{$direction}-items, $alignment);
             }
         }
     }
@@ -222,6 +196,7 @@ p {
 
 .page {
     @include spacing.full-size;
+    padding: spacing.multiply(4) spacing.multiply(2);
 }
 
 .page:not(.active) {
@@ -233,7 +208,7 @@ p {
 }
 
 .game {
-    @include grid($gap: 10);
+    @include layout.grid($gap: 10);
     row-gap: spacing.multiply(4);
     grid-template-columns: minmax(auto, 600px) auto;
 
@@ -242,8 +217,7 @@ p {
     }
 
     @include responsive.mobile-screen {
-        @include grid-gap(4);
-        padding-inline: spacing.multiply(4);
+        @include layout.grid-gap(4);
         grid-template-columns: 1fr;
 
         #info {
@@ -253,7 +227,7 @@ p {
 }
 
 #table {
-    @include grid($gap: 0);
+    @include layout.grid($gap: 0);
     grid-template: repeat(9, 1fr) / repeat(9, 1fr);
 
     $thinWidth: 1px;
@@ -268,7 +242,7 @@ p {
     user-select: none; /* Standard */
 
     .cell {
-        @include grid($gap: 0, $align-items: center, $justify-items: center);
+        @include layout.grid($gap: 0, $align-items: center, $justify-items: center);
         grid-template: repeat(3, 1fr) / repeat(3, 1fr);
         color: colors.$blue;
         cursor: pointer;
@@ -368,7 +342,7 @@ p {
 }
 
 .button-panel {
-    @include grid($gap: 2);
+    @include layout.grid($gap: 2);
     grid-template-areas:
         'm  m  m '
         'b1 b2 b3'
@@ -378,13 +352,16 @@ p {
         'x  x  x ';
 
     @include responsive.mobile-screen {
-        @include grid-gap(4);
-        @include grid-alignment($property: justify-content, $value: space-between);
+        // @include layout.grid-gap(4);
         grid-template-areas:
             'b1 b2 b3 b4 b5'
             'b6 b7 b8 b9 e '
             'n  .  h  .  x'
             'm  m  m  m  m';
+    }
+
+    button.set-value {
+        justify-self: center;
     }
 
     @for $value from 1 through 9 {

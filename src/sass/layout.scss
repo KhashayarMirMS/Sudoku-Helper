@@ -1,0 +1,41 @@
+@use 'spacing';
+
+@mixin grid-gap($gap) {
+    gap: spacing.multiply($gap);
+}
+
+@mixin grid-alignment($property, $value) {
+    #{$property}: $value;
+}
+
+@mixin grid($align-content: center, $justify-content: center, $align-items: stretch, $justify-items: stretch, $gap: 4) {
+    display: grid;
+    @include grid-gap($gap);
+
+    @include grid-alignment(align-content, $align-content);
+    @include grid-alignment(justify-content, $justify-content);
+    @include grid-alignment(align-items, $align-items);
+    @include grid-alignment(justify-items, $justify-items);
+
+    $content-alignment-options: (start, center, end, stretch, space-around, space-between, space-evenly);
+    @each $alignment in $content-alignment-options {
+        &.align-content-#{$alignment} {
+            align-content: $alignment;
+        }
+
+        &.justify-content-#{$alignment} {
+            justify-content: $alignment;
+        }
+    }
+
+    $item-alignment-options: (start, center, end, stretch);
+    @each $alignment in $item-alignment-options {
+        &.align-items-#{$alignment} {
+            align-items: $alignment;
+        }
+
+        &.justify-items-#{$alignment} {
+            justify-items: $alignment;
+        }
+    }
+}
