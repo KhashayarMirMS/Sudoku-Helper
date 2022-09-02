@@ -19,7 +19,7 @@
         "baseUrl": "./src/ts/",
     },
     "include": [
-        "src"
+        "src/ts/"
     ],
     "exclude": [
         "dist",

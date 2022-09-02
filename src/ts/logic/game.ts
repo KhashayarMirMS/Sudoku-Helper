@@ -308,10 +308,6 @@ class Board extends Serializable implements Cloneable<Board>, Renderable<HTMLCel
         }
     }
 
-    get hasUniqueSolution(): boolean {
-        return Board.getNumberOfSolutions(this) === 1;
-    }
-
     choicesForCell(row: number, column: number): Array<NonEmptyCellValue> {
         const availableValues: Set<NonEmptyCellValue> = new Set([
             1, 2, 3,
@@ -552,10 +548,10 @@ class GameState extends State<GameState> implements Renderable {
         ...State.ignoredFields,
     ]);
 
-    static cutoffs: Record<Difficulty, [number, number]> = {
-        easy: [30, 40],
-        medium: [40, 50],
-        hard: [50, 60]
+    static cutoffs: Record<Difficulty, [number, number, number]> = {
+        easy: [40, 55, 1],
+        medium: [55, 65, 2],
+        hard: [65, 75, 4]
     };
 
     difficulty: Difficulty = 'easy';
@@ -1032,24 +1028,26 @@ export function generateGame(difficulty: Difficulty) {
             board = Board.generate();
         } while(board === undefined);
 
-        gameState.numberOfSolutions = Board.getNumberOfSolutions(board.clone());
         gameState.solution = board.clone();
 
         const cutoffRange = GameState.cutoffs[difficulty];
         const cutoff = Math.floor(Math.random() * (cutoffRange[1] - cutoffRange[0])) + cutoffRange[0];
+        const maxNumberOfSolutions = cutoffRange[2];
         let currentCutoff = 0;
 
         while(currentCutoff < cutoff) {
             const [randomRow, randomColumn] = [Math.floor(Math.random() * 9), Math.floor(Math.random() * 9)];
             const value = board.cells[randomRow][randomColumn].getValue();
             board.cells[randomRow][randomColumn].value = 0;
-            if (!board.hasUniqueSolution) {
+            if (Board.getNumberOfSolutions(board) > maxNumberOfSolutions) {
                 currentCutoff--;
                 board.cells[randomRow][randomColumn].value = value;
             }
 
             currentCutoff++;
         }
+
+        gameState.numberOfSolutions = Board.getNumberOfSolutions(board.clone());
 
         board.cells.forEach(row => {
             row.forEach(cell => {
